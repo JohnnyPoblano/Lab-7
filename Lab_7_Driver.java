@@ -29,6 +29,17 @@ public class Lab_7_Driver {
     final static int ENROLLMENT_TWO = 13;
     final static int INSTRUCTOR_ID_TWO = 414;
 
+    // ArrayList constants
+    final static String STUDENT_ID_1 = "A001";
+    final static String STUDENT_ID_2 = "A002";
+    final static String STUDENT_ID_3 = "A003";
+    final static String STUDENT_ID_4 = "A004";
+
+    final static int STUDENT_GRADE_1 = 1;
+    final static int STUDENT_GRADE_2 = 2;
+    final static int STUDENT_GRADE_3 = 3;
+    final static int STUDENT_GRADE_4 = 4;
+
 
     public static void main(String args[]) {
 
@@ -47,14 +58,38 @@ public class Lab_7_Driver {
         classOne.setEnrollment(ENROLLMENT_ONE);
         classOne.setInstructorID(INSTRUCTOR_ID_ONE);
 
+        // Add 4 students to enrollee list field (grades 0, sequential id's)
+        Student studentOne = new Student(STUDENT_ID_1, 0);
+        Student studentTwo = new Student(STUDENT_ID_2, 0);
+        Student studentThree = new Student(STUDENT_ID_3, 0);
+        Student studentFour = new Student(STUDENT_ID_4, 0);
+        
+        classOne.addStudent(studentOne);
+        classOne.addStudent(studentTwo);
+        classOne.addStudent(studentThree);
+        classOne.addStudent(studentFour);
+
         // Display class one with toString method
         System.out.println(classOne.toString());
 
-        // Create class object with constructor method
-        ClassSection classTwo = new ClassSection(CRN_TWO, DEPT_TWO, COURSE_NUM_TWO, INST_MODE_TWO, CAMPUS_TWO, MEETING_DAYS_TWO, MEETING_TIMES_TWO, CAPACITY_TWO, ENROLLMENT_TWO, INSTRUCTOR_ID_TWO);
+        // Display enrollee list
+        classOne.displayEnrolleeList(classOne.getEnrolleeList());
 
-        // Display class two with toString method
-        System.out.println(classTwo.toString());
+        // Set each grade for enrolled students
+        studentOne.setGrade(STUDENT_GRADE_1);
+        studentTwo.setGrade(STUDENT_GRADE_2);
+        studentThree.setGrade(STUDENT_GRADE_3);
+        studentFour.setGrade(STUDENT_GRADE_4);
+
+        // Display enrollee list
+        classOne.displayEnrolleeList(classOne.getEnrolleeList());
+
+        // Remove a student
+        classOne.removeStudent(0);
+
+        // Display enrolle list
+        classOne.displayEnrolleeList(classOne.getEnrolleeList());
+
     }
 
 

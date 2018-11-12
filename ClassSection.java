@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
 **  John G
 **  CIS 131
@@ -17,6 +19,7 @@ public class ClassSection {
     private int capacity;
     private int enrollment;
     private int instructorID;
+    private ArrayList<Student> enrolleeList = new ArrayList<Student>();
 
     // String manipulation constants
     final static String SUNDAY = "1";
@@ -142,7 +145,7 @@ public class ClassSection {
     }
 
     public int getEnrollment() {
-        return enrollment;
+        return enrolleeList.size();
     }
 
     public int getInstructorID() {
@@ -198,11 +201,54 @@ public class ClassSection {
                      "Meeting Days:            " + createWeekdayString(meetingDays) + "\n" +
                      "Meeting Times:           " + meetingTimes + "\n" +
                      "Capacity:                " + capacity  + "\n" +
-                     "Enrollment:              " + enrollment + "\n" +
+                     "Enrollment:              " + getEnrollment() + "\n" +
                      "Instructor's ID:         " + instructorID + "\n" +
                      "************************************\n";
 
         return str;
+    }
+
+    // Enrollee list output
+    public void displayEnrolleeList(ArrayList<Student> enrolleeList) {
+        System.out.println("************************************");
+        System.out.println("           Enrollee List            ");
+        System.out.println("************************************");
+        System.out.println("Student ID                     Grade");
+        System.out.println("************************************");
+
+        for (int i = 0; i < enrolleeList.size(); i++) {
+            System.out.printf("%-18s%18d", enrolleeList.get(i).getStudentID(), enrolleeList.get(i).getGrade());
+            System.out.println();
+        }
+
+        System.out.println("************************************");
+    }
+
+    // Student ArrayList methods
+    public ArrayList<Student> getEnrolleeList() {
+        return this.enrolleeList;
+    }
+
+    public void addStudent(Student s) {
+        enrolleeList.add(s);
+    }
+
+    public void removeStudent(int s) {
+        enrolleeList.remove(s);
+    }
+
+
+    // Get arrayList index of particular student ID
+    public int getStudentIndexByID(String studentID) {
+        int index = 0;
+
+        for (int i = 0; i < enrolleeList.size(); i++) {
+            if (enrolleeList.get(i).getStudentID().equals(studentID)) {
+                index = i;
+            }
+        }
+
+        return index;
     }
 
 }
